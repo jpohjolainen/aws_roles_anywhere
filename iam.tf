@@ -26,9 +26,10 @@ resource "aws_iam_role" "app" {
       Effect = "Allow"
       Sid    = ""
       Condition = {
-        StringEquals = {
-            "aws:PrincipalTag/x509Subject/OU" = "Dev"
-        }
+        ## The role can be pinned/limited to only a certain common_name or f.ex. organizational_unit
+        # StringEquals = {
+        #     "aws:PrincipalTag/x509Subject/CN" = var.ca_subject.common_name
+        # }
         ArnEquals = {
             "aws:SourceArn" = aws_acmpca_certificate_authority.private_ca.arn
         }
