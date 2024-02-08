@@ -2,6 +2,12 @@ data "aws_iam_policy" "s3_readonly" {
   name = "AmazonS3ReadOnlyAccess"
 }
 
+#
+# Creating IAM Role the application will assume to.
+#
+# Considion in the assume_role_policy is to limit the policy access to only
+# certain OrganizationUnit and only from our Private CA
+#
 resource "aws_iam_role" "app" {
   name = "RolesAnywhereAppRole"
   path = "/"
@@ -21,7 +27,7 @@ resource "aws_iam_role" "app" {
       Sid    = ""
       Condition = {
         StringEquals = {
-            "aws:PrincipalTag/x509Subject/OU" = "DevOps"
+            "aws:PrincipalTag/x509Subject/OU" = "Dev"
         }
         ArnEquals = {
             "aws:SourceArn" = aws_acmpca_certificate_authority.private_ca.arn
