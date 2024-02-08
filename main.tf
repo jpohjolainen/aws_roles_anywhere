@@ -12,7 +12,22 @@ provider "aws" {
   region  = var.aws_region
 }
 
-variable "aws_profile" {}
-variable "aws_region" {}
+variable "aws_profile" {
+  type = string
+}
+
+variable "aws_region" {
+  type = string
+}
+
+variable ca_subject {
+  type = map(string)
+  default = {
+      common_name = "DevCA"
+      country = "DE"
+      organization = "PolarSquad"
+      organizational_unit = "Dev"
+  }
+}
 
 data "aws_partition" "current" {}

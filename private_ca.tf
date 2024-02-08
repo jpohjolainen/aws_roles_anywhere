@@ -11,10 +11,11 @@ resource "aws_acmpca_certificate_authority" "private_ca" {
     # Subject can be as minimal as having just common_name with domain as value, 
     # country and others are not necessary
     subject {
-      country = "DE"
-      organization = "PolarSquad"
-      organizational_unit = "Dev"
-      common_name = "DevCA"
+      common_name         = var.ca_subject.common_name
+      country             = lookup(var.ca_subject, "country", null)
+      organization        = lookup(var.ca_subject, "organization", null)
+      organizational_unit = lookup(var.ca_subject, "organizational_unit", null)
+      state               = lookup(var.ca_subject, "state", null)
     }
   }
 
