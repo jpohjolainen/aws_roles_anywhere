@@ -22,12 +22,6 @@ variable "aws_region" {
 
 variable ca_subject {
   type = map(string)
-  default = {
-      common_name = "DevCA"
-      country = "DE"
-      organization = "PolarSquad"
-      organizational_unit = "Dev"
-  }
 }
 
 data "aws_partition" "current" {}
