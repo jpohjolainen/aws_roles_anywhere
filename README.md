@@ -4,6 +4,8 @@ This repo has TF code to create AWS Private CA and AWS RolesAnywhere Trust Ancho
 
 Check the variables in [`terraform.tfvar`](/terraform.tfvars) and change them to suit you.
 
+**NOTE**: AWS Private CA costs 300e ($400) a month. Only first one is free for 30 days.
+
 Plan first 
 ```sh
 terraform plan -out tf.plan
