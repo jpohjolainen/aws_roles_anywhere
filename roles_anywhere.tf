@@ -8,7 +8,8 @@ resource "aws_rolesanywhere_trust_anchor" "applications" {
     }
     source_type = "AWS_ACM_PCA"
   }
-  # Wait for the ACMPCA to be ready to receive requests before setting up the trust anchor
+
+  # Wait for the ACMPCA and S3 Policy to be ready to receive requests before setting up the trust anchor
   depends_on = [aws_acmpca_certificate_authority_certificate.private_ca]
 }
 

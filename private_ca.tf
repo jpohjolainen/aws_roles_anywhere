@@ -21,11 +21,18 @@ resource "aws_acmpca_certificate_authority" "private_ca" {
 
   permanent_deletion_time_in_days = 7
 
-  #
-  # CRL (Certification Revoking List) configuration should be enabled so certificates can be revoked,
-  # but for the moment it's not possible to enable RolesAnywhere to fetch CRL through Terraform so 
-  # left out in this example.
-  #
+
+  revocation_configuration {
+    crl_configuration {
+      custom_cname       = "crl.privateca"
+      enabled            = true
+      expiration_in_days = 7
+      s3_bucket_name     = aws_s3_bucket.private_ca_s3.id
+      s3_object_acl      = "BUCKET_OWNER_FULL_CONTROL"
+    }
+  }
+
+  depends_on = [ aws_s3_bucket_policy.private_ca_s3 ]
 }
 
 resource "aws_acmpca_certificate" "private_ca" {

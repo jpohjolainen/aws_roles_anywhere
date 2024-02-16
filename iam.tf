@@ -31,7 +31,7 @@ resource "aws_iam_role" "app" {
         #     "aws:PrincipalTag/x509Subject/CN" = var.ca_subject.common_name
         # }
         ArnEquals = {
-            "aws:SourceArn" = aws_acmpca_certificate_authority.private_ca.arn
+            "aws:SourceArn" = aws_rolesanywhere_trust_anchor.applications.arn
         }
       }
     }]
