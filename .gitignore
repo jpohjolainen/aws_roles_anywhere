@@ -1,6 +1,8 @@
 **/.terraform/*
 *.auto.tfvars
 *.tfoverride
+*.tfstate
+*.tfstate.backup
 *.lock.hcl
 .envrc
 .terraformrc
