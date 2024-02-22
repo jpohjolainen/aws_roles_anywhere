@@ -5,7 +5,7 @@ data "aws_iam_policy" "s3_readonly" {
 #
 # Creating IAM Role the application will assume to.
 #
-# Considion in the assume_role_policy is to limit the policy access to only
+# Condition in the assume_role_policy is to limit the policy access to only
 # certain OrganizationUnit and only from our Private CA
 #
 resource "aws_iam_role" "app" {
